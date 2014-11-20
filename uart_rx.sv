@@ -40,10 +40,10 @@ assign bit_half_count = (baud_count == 6'd22) ? 1: 0;
 always @(posedge clk, negedge rst_n) begin   //rdy after start and stop bits
 if(!rst_n)
 rdy <= 0;
-else if(!clr_rdy & data_rdy)
-rdy <= 1;
 else if(clr_rdy)
 rdy <= 0;
+else if(!clr_rdy & data_rdy)
+rdy <= 1;
 end
 
 always @(posedge clk, negedge rst_n) begin

@@ -196,7 +196,7 @@ $stop;
 end
 
 initial
-	$monitor("%g ", $time , icmd.cmd_rdy ,icmd.cmd);
+	$monitor("%g cmd_rdy:%d cmd:%h", $time , icmd.cmd_rdy ,icmd.cmd);
 
 endmodule
 
