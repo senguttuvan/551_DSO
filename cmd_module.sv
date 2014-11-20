@@ -18,7 +18,6 @@ output capture_ch1_gain,capture_ch2_gain,capture_ch3_gain,clr_cmd_rdy;
  reg [2:0] ss;
  reg wrt_SPI,send_resp; 
  reg clr_cmd_rdy;
- //reg [7:0] trig;
  
 
  localparam CFG_GAIN = 4'h2;
@@ -26,29 +25,22 @@ output capture_ch1_gain,capture_ch2_gain,capture_ch3_gain,clr_cmd_rdy;
  localparam WRT_EEP  = 4'h8;
  localparam RD_EEP   = 4'h9;
 
- localparam CMD_DISPATCH = 3'b000;
- localparam	CFG_GAIN2 = 3'b001;
- localparam SET_TRIG2 = 3'b010;
- localparam WRT_EEP2	 = 3'b011;
- localparam RD_EEP2	 = 3'b100;
- localparam	RD_EEP3 = 3'b101; 
+ typedef enum reg [2:0] {CMD_DISPATCH,CFG_GAIN2,SET_TRIG2,WRT_EEP2,RD_EEP2,RD_EEP3} state_t;
 
- 
-
- reg [2:0] state,nstate;
+ state_t state,nstate;
 
 
   ///////////////////////////////////
   // Logic for Command processing //
   /////////////////////////////////
 
-always @ (posedge clk,negedge rst_n)
+always_ff @ (posedge clk,negedge rst_n)
 	if (!rst_n)
 		state <= CMD_DISPATCH;
 	else
 		state <= nstate;
 	
-always @ (state, cmd_rdy, cmd, SPI_done ) 
+always_comb 
 begin	
 
  SPI_data = 16'h0000;
