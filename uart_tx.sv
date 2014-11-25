@@ -16,7 +16,7 @@ wire count_en, tx_start_bit;
 wire [7:0] shift_tx;
 
 assign count_en = tx_done ? 0 : ((baud_count==6'd43) ? 1 : 0);
-assign shift_tx = (state == IDLE | (state==START)) ? tx_data : (count_en ? {1, command_tx[7:1]} :command_tx);
+assign shift_tx = (state == IDLE | (state==START)) ? tx_data : (count_en ? {1'b1, command_tx[7:1]} :command_tx);
 assign TX = (state==IDLE) ? 1 : (state==START) ? tx_start_bit : command_tx[0];
 assign tx_start_bit = (~tx_done) ? 0 : 1;
 assign tx_done_bit = bit_count[3] & bit_count[1] & ~trmt;

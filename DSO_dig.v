@@ -25,10 +25,11 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
  reg enable;
  reg SSn;
  wire [2:0] ss;
- wire cmd_rdy,SPI_done;
+ wire cmd_rdy,SPI_done,send_resp,resp_sent;
  wire [23:0] cmd;
  wire [15:0] SPI_data;
-
+ wire [7:0] resp_data;
+ 
   /////////////////////////////
   // Instantiate SPI master //
   ///////////////////////////
@@ -63,15 +64,16 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 	trig_ss_n = 0;
 
 	case (enable)
-		3'b001 :	ch1_ss_n = SSn;
+	   
+   		3'b000 : 	trig_ss_n = SSn; 
+	   
+		3'b001 :	 ch1_ss_n = SSn;
 
-		3'b010 :	ch2_ss_n = SSn;
+		3'b010 :	 ch2_ss_n = SSn;
 
-		3'b011 :	ch3_ss_n = SSn;
+		3'b011 :	 ch3_ss_n = SSn;
 
 		3'b100 : 	EEP_ss_n = SSn;
-
-		3'b111 : 	trig_ss_n = SSn;
 	
 		default : begin
 			EEP_ss_n = 0;
@@ -89,7 +91,8 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 			
 
 
-	uart_comm_transceiver iuart(clk, rst_n, tx_done, cmd_rdy, tx_data, cmd, TX, RX, clr_cmd_rdy, trmt );
+	uart_comm_transceiver iuart(.clk(clk), .rst_n(rst_n), .tx_done(resp_sent), .cmd_rdy(cmd_rdy),
+     .tx_data(resp_data), .cmd(cmd), .TX(TX), .RX(RX), .clr_cmd_rdy(clr_cmd_rdy),.trmt(send_resp) );
 
 	    
   ///////////////////////////
@@ -196,52 +199,6 @@ $stop;
 end
 
 initial
-	$monitor("%g cmd_rdy:%d cmd:%h", $time , icmd.cmd_rdy ,icmd.cmd);
+	$monitor("%g cmd_rdy:%d cmd:%h icmd_response:%h", $time , icmd.cmd_rdy ,icmd.cmd, icmd.resp_data);
 
 endmodule
-
-/*
-@(posedge clk)
-	icmd.cmd_rdy = 1;
-@(negedge clk);
-	rst_n = 1;
-
-repeat (1) @(posedge clk);
-
-if( ( icmd.SPI_data == 16'h13DD ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b001 ))
-		$display("Success");
-
-icmd.cmd = 24'h031CEF;
-repeat (1) @(posedge clk) ;
-@(negedge clk) icmd.cmd_rdy = 0;
-if( ( icmd.SPI_data == 16'h00EF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b111 ))
-		$display("Success");
-
-icmd.cmd = 24'h081CEF;
-
-@(negedge clk) icmd.cmd_rdy = 0;
-repeat (1) @(posedge clk);
-
-@(icmd.SPI_done)
-if( ( icmd.SPI_data == 16'h5CEF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b100 ))
-		$display("Success");
-
-icmd.cmd_rdy = 1;
-icmd.cmd = 24'h092CBF;
-
-repeat (2) @(posedge clk);
-
-@(icmd.SPI_done)
-if( ( icmd.SPI_data == 16'h2CBF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b100 ))
-		$display("Success");
-
-repeat (2) @(posedge clk);
-$stop;
-end
-
-initial begin
-$monitor ("time: %g cmd : %h SPI_data : %h ss : %b wrt_SPI : %b",$time,icmd.cmd,icmd.SPI_data,icmd.idcore.ss,icmd.wrt_SPI );
-end
-
-endmodule
-*/

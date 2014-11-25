@@ -40,6 +40,12 @@ repeat(600)@(posedge clk);
 
 
 $display (" %h ", cmd);
+
+if (cmd == 24'hCA7b67)
+   $display ("Success");
+else
+   $display ("Error");
+   
 $stop;
 end
 
