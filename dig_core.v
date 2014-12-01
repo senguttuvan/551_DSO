@@ -27,9 +27,8 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
   ///From the command processing unit to the trig_cap module//////
    wire [3:0] decimator_reg;
    wire [7:0] trig_cfg;    
-   wire [8:0] trig_pos;
+   wire [8:0] trig_pos,trace_end;
    wire capture_done;
-
 
    //From cmd_module to ram_iface
    wire dump_en;    //Enable data dump
@@ -41,15 +40,15 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
   /////////////////////////////////////////////////////
 
   cmd_module icmd(clk,rst_n,SPI_done,cmd,cmd_rdy,SPI_data,ss,wrt_SPI,EEP_data,send_resp,clr_cmd_rdy,resp_sent,resp_data,
-                  trig_cfg,trig_pos,decimator_reg,capture_done);
+                  trig_cfg,trig_pos,decimator_reg,capture_done,dump_en,ch1_rdata,ch2_rdata,ch3_rdata,addr,trace_end);
   
   //Trigger & Capture Logic////
   
-  // trig_cap TRIG_CAP(.clk(clk), .rst_n(rst_n), .trig1(trig1), .trig2(trig2), .adc_clk(adc_clk), .trig_cfg(trig_cfg), .trig_pos(trig_pos), .decimator_reg(decimator_reg), .capture_done(capture_done));
+  // trig_cap TRIG_CAP(.clk(clk), .rst_n(rst_n), .trig1(trig1), .trig2(trig2), .adc_clk(adc_clk), .trig_cfg(trig_cfg), .trig_pos(trig_pos), .decimator_reg(decimator_reg), .capture_done(capture_done), .trace_end(trace_end));
 
   ///// RAM Interface /////
   
-  // ram_iface  RAM_IFACE(.ch1_rdata(ch1_rdata), .ch2_rdata(ch2_rdata), .ch3_rdata(ch3_rdata), .rclk(rclk), .clk(clk), .rst_n(rst_n), .en(en), .we(we), .addr(addr),.dump_en(dump_en), .channel(channel), .corrected(corrected), .EEP_data(EEP_data));
+ // ram_iface  RAM_IFACE(.ch1_rdata(ch1_rdata), .ch2_rdata(ch2_rdata), .ch3_rdata(ch3_rdata), .rclk(rclk), .clk(clk), .rst_n(rst_n), .en(en), .we(we), .addr(addr),.dump_en(dump_en), .channel(channel), .corrected(corrected), .EEP_data(EEP_data));
 
   endmodule
  

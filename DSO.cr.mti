@@ -1,0 +1,255 @@
+/userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cache.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cache.v
+-- Compiling module cache
+
+Top level modules:
+	cache
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ff.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ff.v
+-- Compiling module ff
+
+Top level modules:
+	ff
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/RAM512.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/RAM512.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module RAM512
+
+Top level modules:
+	RAM512
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/shift16.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/shift16.v
+-- Compiling module shift16
+
+Top level modules:
+	shift16
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cpu_tb.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cpu_tb.v
+-- Compiling module cpu_tb
+
+Top level modules:
+	cpu_tb
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cac_con.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cac_con.v
+-- Compiling module cac_con
+
+Top level modules:
+	cac_con
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/instr_mem.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/instr_mem.v
+-- Compiling module IM
+
+Top level modules:
+	IM
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffr.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffr.v
+-- Compiling module ffr
+
+Top level modules:
+	ffr
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_core.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_core.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module dig_core
+
+Top level modules:
+	dig_core
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/signextend.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/signextend.v
+-- Compiling module signextend
+
+Top level modules:
+	signextend
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffe.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffe.v
+-- Compiling module ffe
+
+Top level modules:
+	ffe
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_EEP.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_EEP.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module SPI_EEP
+
+Top level modules:
+	SPI_EEP
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/AFE_A2Ds.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/AFE_A2Ds.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module AFE_A2D
+
+Top level modules:
+	AFE_A2D
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ALU.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ALU.v
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig_tb.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig_tb.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module DSO_dig_tb
+
+Top level modules:
+	DSO_dig_tb
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/fworacle.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/fworacle.v
+-- Compiling module fworacle
+
+Top level modules:
+	fworacle
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/alucontrol.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/alucontrol.v
+-- Compiling module alucontrol
+
+Top level modules:
+	alucontrol
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/calib_eep.sv {2 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/calib_eep.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module calib_eep
+** Warning: /userspace/s/senguttuvan/ece551/modelsim/551_DSO/calib_eep.sv(19): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: /userspace/s/senguttuvan/ece551/modelsim/551_DSO/calib_eep.sv(19): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+Top level modules:
+	calib_eep
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_transceiver.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_transceiver.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module uart_comm_transceiver
+
+Top level modules:
+	uart_comm_transceiver
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/trigger.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/trigger.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module trig
+-- Compiling module trigger_tb
+
+Top level modules:
+	trigger_tb
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_rx.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_rx.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/mem_hierarchy.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/mem_hierarchy.v
+-- Compiling module mem_hierarchy
+-- Compiling module mem_htb
+
+Top level modules:
+	mem_htb
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/id.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/id.v
+-- Compiling module id
+
+Top level modules:
+	id
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/idecode.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/idecode.v
+-- Compiling module idecode
+
+Top level modules:
+	idecode
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_tx.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_tx.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module uart_comm
+
+Top level modules:
+	uart_comm
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/condition.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/condition.v
+-- Compiling module condition
+
+Top level modules:
+	condition
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module SPI_slv
+
+Top level modules:
+	SPI_slv
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/data_mem.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/data_mem.v
+-- Compiling module DM
+
+Top level modules:
+	DM
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cpu.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/cpu.v
+-- Compiling module cpu
+
+Top level modules:
+	cpu
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/cmd_module.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/cmd_module.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module cmd_module
+
+Top level modules:
+	cmd_module
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_transceiver_tb.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_transceiver_tb.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module uart_comm_transceiver_tb
+
+Top level modules:
+	uart_comm_transceiver_tb
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_mstr.sv {1 {vlog -nostats -work work -vopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_mstr.sv
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module SPI_mstr
+
+Top level modules:
+	SPI_mstr
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/rf_pipelined.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/rf_pipelined.v
+-- Compiling module rf
+
+Top level modules:
+	rf
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/unified_mem.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/unified_mem.v
+-- Compiling module unified_mem
+
+Top level modules:
+	unified_mem
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_pot.v {1 {vlog -nostats -work work -vopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_pot.v
+QuestaSim-64 vlog 10.3 Compiler 2014.01 Jan  6 2014
+-- Compiling module dig_pot
+
+Top level modules:
+	dig_pot
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffer.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ffer.v
+-- Compiling module ffer
+
+Top level modules:
+	ffer
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ifetch.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/ifetch.v
+-- Compiling module ifetch
+
+Top level modules:
+	ifetch
+
+} {} {}} /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/execute.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece552/Cache/Stage_2/verilog/handins/execute.v
+-- Compiling module execute
+
+Top level modules:
+	execute
+
+} {} {}}
