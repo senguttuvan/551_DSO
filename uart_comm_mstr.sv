@@ -1,4 +1,4 @@
-module uart_comm_transceiver(clk, rst_n, tx_done, cmd_rdy, tx_data, cmd, TX, RX, clr_cmd_rdy, trmt );
+module uart_comm_mstr(clk, rst_n, tx_done, cmd_rdy, tx_data, cmd, TX, RX, clr_cmd_rdy, trmt );
 
  input [7:0] tx_data;
  output [23:0] cmd;
