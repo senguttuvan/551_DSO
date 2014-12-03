@@ -22,14 +22,14 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 
  reg	EEP_ss_n,	ch3_ss_n,	ch2_ss_n,	ch1_ss_n,	trig_ss_n ;
  wire en;
- reg enable;
- reg SSn;
+ reg [2:0] enable;
  wire [2:0] ss;
  wire cmd_rdy,SPI_done,send_resp,resp_sent;
  wire [23:0] cmd;
  wire [15:0] SPI_data;
  wire [7:0] resp_data;
- 
+ reg  [7:0] EEP_data;
+
   /////////////////////////////
   // Instantiate SPI master //
   ///////////////////////////
@@ -41,39 +41,41 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
   // you might have to do something creative to generate the //
   // 5 individual SS needed (3 AFE, 1 Trigger, 1 EEP)       //
   ///////////////////////////////////////////////////////////
- 
+
+
+  always @(posedge clk, negedge rst_n)
+	if (!rst_n)
+		EEP_data <= 0;
+	else if(SPI_done)
+		EEP_data <= data_in;
+
+
  always @(posedge clk, negedge rst_n)
 	if (!rst_n)
 		enable <= 0;
 	else if(wrt_SPI)
 		enable <= ss[2:0];
 
- always @(posedge clk, negedge rst_n)
-	if (!rst_n)
-		SSn <= 1;
-	else
-		SSn <= SS_n;
-
- always @(enable,SSn)
+ always @(enable,SS_n)
  begin
 
-	EEP_ss_n = 0;
-	ch3_ss_n = 0;
-	ch2_ss_n = 0;
-	ch1_ss_n = 0;
-	trig_ss_n = 0;
+	EEP_ss_n = 1;
+	ch3_ss_n = 1;
+	ch2_ss_n = 1;
+	ch1_ss_n = 1;
+	trig_ss_n = 1;
 
 	case (enable)
 	   
-   		3'b000 : 	trig_ss_n = SSn; 
+   		3'b000 : 	trig_ss_n = SS_n; 
 	   
-		3'b001 :	 ch1_ss_n = SSn;
+		3'b001 :	 ch1_ss_n = SS_n;
 
-		3'b010 :	 ch2_ss_n = SSn;
+		3'b010 :	 ch2_ss_n = SS_n;
 
-		3'b011 :	 ch3_ss_n = SSn;
+		3'b011 :	 ch3_ss_n = SS_n;
 
-		3'b100 : 	EEP_ss_n = SSn;
+		3'b100 : 	EEP_ss_n = SS_n;
 	
 		default : begin
 			EEP_ss_n = 0;
@@ -151,10 +153,8 @@ DSO_dig icmd(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MISO,
 
 uart_tx DUT(.TX(RX), .trmt(trmt), .tx_data(tx_data), .rst_n(rst_n), .clk(clk), .tx_done(tx_done));
 
-
-SPI_slv islave(.clk(clk),.rst_n(rst_n),.tx_data(slavetx_data),.SCLK(SCLK),.MISO(MISO),.SS_n(ch1_ss_n),.MOSI(MOSI),.cmd_rcvd(cmd_rcvd),
-								.cmd_rdy(cmd_rdy),.rsp_rdy(rsp_rdy));
-
+SPI_EEP islave(.clk(clk),.rst_n(rst_n),.SS_n(EEP_ss_n),.SCLK(SCLK),.MOSI(MOSI),.MISO(MISO));
+	
 initial begin
 clk = 1;
 forever #1 clk = ~clk;
@@ -170,7 +170,7 @@ trmt = 0;
 repeat(2) @(posedge clk);
 @ (negedge clk);
 rst_n =1;
-tx_data = 8'h02;
+tx_data = 8'h08;
 trmt = 1;
 slavetx_data = 16'h0001;
 
@@ -179,20 +179,47 @@ trmt =0;
 repeat(600)@(posedge clk);
 $display("%g byte 1 done" , $time);
 @(negedge clk) trmt = 1;
-tx_data = 8'h1C;
+tx_data = 8'h03;
 repeat(20) @ (posedge clk);
 trmt =0;
 repeat(600)@(posedge clk);
 $display("%g byte 2 done" , $time);
 @(negedge clk) trmt = 1;
-tx_data = 8'hEF;
+tx_data = 8'h01;
 repeat(20) @ (posedge clk);
 trmt =0;
 repeat(600)@(posedge clk);
 $display("%g byte 3 done" , $time);
 repeat(1000)@(posedge clk);
 
-$display("dataaa : %h", cmd_rcvd);
+$display("dataaa : %h", islave.cmd_rcvd);
+
+$display("%g Write offset to EEPROM done" , $time);
+
+@(negedge clk) trmt = 1;
+tx_data = 8'h09;
+repeat(20) @ (posedge clk);
+trmt =0;
+repeat(600)@(posedge clk);
+
+@(negedge clk) trmt = 1;
+tx_data = 8'h03;
+repeat(20) @ (posedge clk);
+trmt =0;
+repeat(600)@(posedge clk);
+
+@(negedge clk) trmt = 1;
+tx_data = 8'h01;
+repeat(20) @ (posedge clk);
+trmt =0;
+
+
+@(icmd.SPI_done);
+@(icmd.SPI_done);
+#20;
+$display("%g Read gain from EEPROM done , data : %h" , $time , icmd.EEP_data);
+repeat(600)@(posedge clk);
+
 
 $stop;
 
