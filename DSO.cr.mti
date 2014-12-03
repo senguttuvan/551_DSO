@@ -1,8 +1,8 @@
-/userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_mstr.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm_mstr.sv
--- Compiling module uart_comm_mstr
+/userspace/s/senguttuvan/ece551/modelsim/551_DSO/capture.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/capture.sv
+-- Compiling module capture
 
 Top level modules:
-	uart_comm_mstr
+	capture
 
 } {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/RAM512.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/RAM512.v
 -- Compiling module RAM512
@@ -54,29 +54,29 @@ Top level modules:
 Top level modules:
 	trigger_tb
 
-} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.v
--- Compiling module SPI_slv
-
-Top level modules:
-	SPI_slv
-
 } {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_rx.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_rx.sv
 -- Compiling module uart_rx
 
 Top level modules:
 	uart_rx
 
-} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv
--- Compiling module uart_comm
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/SPI_slv.v
+-- Compiling module SPI_slv
 
 Top level modules:
-	uart_comm
+	SPI_slv
 
 } {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_tx.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_tx.sv
 -- Compiling module uart_tx
 
 Top level modules:
 	uart_tx
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/uart_comm.sv
+-- Compiling module uart_comm
+
+Top level modules:
+	uart_comm
 
 } {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/cmd_module.sv {1 {vlog -nostats -work work -novopt -sv /userspace/s/senguttuvan/ece551/modelsim/551_DSO/cmd_module.sv
 -- Compiling module cmd_module
@@ -95,6 +95,12 @@ Top level modules:
 
 Top level modules:
 	uart_comm_transceiver_tb
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/UART_comm_mstr.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/UART_comm_mstr.v
+-- Compiling module UART_comm_mstr
+
+Top level modules:
+	UART_comm_mstr
 
 } {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_pot.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/dig_pot.v
 -- Compiling module dig_pot

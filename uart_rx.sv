@@ -65,10 +65,10 @@ end
 always @(posedge clk, negedge rst_n) begin      //Counting the number of incoming bits
 if(!rst_n)
 bit_count <= 4'h0;
+else if(clr_rdy | clr_rcv)
+bit_count <= 4'h0;
 else if(count_en)
 bit_count <= bit_count + 1;
-else if(clr_rdy)
-bit_count <= 4'h0;
 end
 
 
