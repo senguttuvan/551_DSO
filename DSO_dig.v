@@ -27,16 +27,14 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
  wire [2:0] ss;
  wire cmd_rdy,SPI_done,send_resp,resp_sent;
  wire [23:0] cmd;
- wire [15:0] SPI_data,data_in;
+ wire [15:0] SPI_data;
  wire [7:0] resp_data;
- wire [7:0] EEP_data; 
+ 
   /////////////////////////////
   // Instantiate SPI master //
   ///////////////////////////
  
   SPI_mstr iSpi_mstr(.clk(clk),.rst_n(rst_n),.SS_n(SS_n),.SCLK(SCLK),.wrt(wrt_SPI),.done(SPI_done),.data_out(SPI_data),.MOSI(MOSI),.MISO(MISO),.data_in(data_in));
-
-	assign EEP_data = data_in[7:0];
 
   ///////////////////////////////////////////////////////////////
   // You have a SPI master peripheral with a single SS output //
@@ -163,7 +161,9 @@ forever #1 clk = ~clk;
 end
 
 initial begin
-
+//RX = 8'h02;
+//RX = 8'h1C;
+//RX = 8'hEF;
 rst_n = 0;
 trmt = 0;
 
