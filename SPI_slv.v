@@ -44,7 +44,7 @@ module SPI_slv(clk,rst_n,tx_data,wrt,SCLK,MISO,SS_n,MOSI,cmd_rcvd,cmd_rdy,rsp_rd
   // create parallel shift register //
   ///////////////////////////////////
   always @(posedge clk)
-    if (ld)
+    if (ld)  
       shft_reg <= buffer;
     else if (shft)
       shft_reg <= {shft_reg[14:0],MOSI_ff3};

@@ -18,10 +18,10 @@ output reg [7:0] trig_cfg;
 output reg [7:0] resp_to_send;                   //flopped version of resp_data
 output [15:0] SPI_data;
 output [2:0] ss;
-output wrt_SPI,send_resp;
+output wrt_SPI,send_resp,clr_capture_done;
 output clr_cmd_rdy;
 output reg [8:0] addr;
-output reg clr_capture_done,dump_en;
+output reg dump_en;
 
    //////////////////////////////////////////////////////////////////////////
   // Interconnects between modules...declare any wire types you need here //
@@ -40,7 +40,6 @@ output reg clr_capture_done,dump_en;
  wire [7:0] corrected;
  reg strt_addrcnt,en_addrcnt,set_channel;
  reg [1:0] chnl;                                                  //to store cc ie channel 
- reg capture_done_ff;                                           
  reg [7:0] sum;
  reg [7:0] prod;
 
@@ -54,7 +53,7 @@ output reg clr_capture_done,dump_en;
  localparam WRT_EEP  		= 4'h8;
  localparam RD_EEP   		= 4'h9;
 
- typedef enum reg [3:0] {CMD_DISPATCH,RD_OFFSET1,RD_GAIN1,RD_OFFSET2,DUMP1,DUMP2,DUMP3,CFG_GAIN2,SET_TRIG2,WRT_EEP2,RD_EEP2,RD_EEP3} state_t;
+ typedef enum reg [3:0] {CMD_DISPATCH,RD_OFFSET1,RD_GAIN1,RD_OFFSET2,DUMP1,DUMP2,DUMP3,CFG_GAIN2,SET_TRIG2,WRITE_TRIG2,WRT_EEP2,RD_EEP2,RD_EEP3} state_t;
 
  state_t state,nstate;
 
@@ -64,6 +63,9 @@ output reg clr_capture_done,dump_en;
 localparam ACK = 8'hA5;
 localparam NACK = 8'hEE;
 //////////////////////////////////
+
+
+
 
    /////////////////////////////////////////////
   // Instantiation of gain correction logic  //
@@ -80,6 +82,8 @@ localparam NACK = 8'hEE;
   // Logic for Command processing //
   /////////////////////////////////
 
+ assign clr_capture_done = (set_trig_cfg) ? (~cmd[13]) : 1'b0;
+
 
  always_ff @(posedge clk, negedge rst_n)
 		if (!rst_n)
@@ -89,19 +93,9 @@ localparam NACK = 8'hEE;
 
 always_ff @ (posedge clk,negedge rst_n)                 
 	if (!rst_n)
-		clr_capture_done <= 0;
- else if(set_trig_cfg)
-		clr_capture_done <= ~cmd[13];
- else
-		clr_capture_done <= 0;
-
-always_ff @ (posedge clk,negedge rst_n)                 
-	if (!rst_n)
 		SPI_done_ff <= 0;
  else 
 		SPI_done_ff	<= SPI_done;
-
-
 
 
 // resp data is flopped as resp_to_send
@@ -153,8 +147,7 @@ always_ff @ (posedge clk,negedge rst_n)
 		trig_cfg[5:0]	<= cmd[13:8];     
   else if( capture_done )
 		trig_cfg[5] <= 1;
-	else if( ~capture_done )
-		trig_cfg[5] <= 0;
+
 
 /////////////////////////////////////////////////////////////////////////
 //////////////////Implementation of state machine///////////////////////
@@ -210,16 +203,6 @@ always_ff @ (posedge clk,negedge rst_n)
 	else if(flop_gain)
 		gain <= EEP_data;
 
-
-/////////////////////////////////////////////////
-//////////////////channel ie cc ///////////////
-//////////////////////////////////////////////
-/*always_ff @ (posedge clk,negedge rst_n)
-	if (!rst_n)
-		chnl <= 2'b00;
-	else if(set_channel)
-		chnl <= cmd[9:8];
-*/
 
 /////////////////////////////////////////////////////
 //////////////////Combinational block///////////////
@@ -336,11 +319,7 @@ case (state)
 
 														WRITE_TRIG: begin
 																				set_trig_cfg=1;								////when set_trig_cfg goes high the trig_cfg is written///////
-              													resp_data = ACK;
-              													flop_resp = 1;
-              													send_resp = 1;
-              													clr_cmd_rdy = 1;
-																				nstate=CMD_DISPATCH;
+																				nstate=WRITE_TRIG2;
 																				end
 
 														READ_TRIG:	begin                                                    ///trig_cfg is read////////////////////////
@@ -463,16 +442,20 @@ case (state)
 
 					DUMP1 : begin
 									dump_en = 1;
-									if(addr == trace_end) begin             
-      																clr_cmd_rdy = 1;
-																			nstate = CMD_DISPATCH;
-   																			end
+									if(addr == (trace_end)) begin             
+      											clr_cmd_rdy = 1;
+														nstate = CMD_DISPATCH;
+   											end
 									else begin																			//otherwise the corrected value is sent out the UART and it goes to DUMP3
 														nstate = DUMP2;
 														set_sum = 1;
-//		  																send_resp = 1;
+														send_resp = 1;
 												end
 									 	end
+
+///////////////////////////////////////////////////////////
+////  Wait state for calculating saturated sum value  ////
+/////////////////////////////////////////////////////////
 
 					DUMP2 : begin
 											dump_en = 1;
@@ -516,9 +499,9 @@ case (state)
 															end
 											end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////wait state for set trigger level////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
  					SET_TRIG2 : begin
 												 if(SPI_done) begin
         													clr_cmd_rdy = 1;
@@ -533,6 +516,18 @@ case (state)
 																end
 	 											end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////  wait state to assert capture done  //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+ 					WRITE_TRIG2 : begin
+																resp_data = ACK;
+       													flop_resp = 1;
+       													send_resp = 1;
+       													clr_cmd_rdy = 1;
+																set_trig_cfg=1;
+																nstate = CMD_DISPATCH;
+	 											end
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////wait state for writing to the EEPROM//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

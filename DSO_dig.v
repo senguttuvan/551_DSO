@@ -88,11 +88,11 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 		3'b100 : 	EEP_ss_n = SS_n;
 	
 		default : begin
-			EEP_ss_n = 0;
-			ch3_ss_n = 0;
-			ch2_ss_n = 0;
-			ch1_ss_n = 0;
-			trig_ss_n = 0;
+			EEP_ss_n = 1;
+			ch3_ss_n = 1;
+			ch2_ss_n = 1;
+			ch1_ss_n = 1;
+			trig_ss_n = 1;
 	  end
 	endcase
  end

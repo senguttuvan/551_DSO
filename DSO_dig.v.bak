@@ -22,12 +22,16 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 
  reg	EEP_ss_n,	ch3_ss_n,	ch2_ss_n,	ch1_ss_n,	trig_ss_n ;
  wire en;
- reg enable;
- reg SSn;
+ reg [2:0] enable;
  wire [2:0] ss;
- wire cmd_rdy,SPI_done;
+ wire cmd_rdy,SPI_done,send_resp,resp_sent;
  wire [23:0] cmd;
- wire [15:0] SPI_data;
+ wire [15:0] SPI_data,data_in;
+ wire [7:0] resp_data;
+ reg  [7:0] EEP_data;
+ wire [8:0] addr;
+ wire [7:0] ch1_rdata,ch2_rdata,ch3_rdata;
+ 
 
   /////////////////////////////
   // Instantiate SPI master //
@@ -40,45 +44,55 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
   // you might have to do something creative to generate the //
   // 5 individual SS needed (3 AFE, 1 Trigger, 1 EEP)       //
   ///////////////////////////////////////////////////////////
- 
+
+////////////////////////////////////////////////////
+///////EEP_data////////////////////////////////////
+  always @(posedge clk, negedge rst_n)
+ 	if (!rst_n)
+		EEP_data <= 0;
+	else if(SPI_done & EEP_ss_n)
+		EEP_data <= data_in[7:0];
+
+/*
+//////////////////////////////////////////////////////
+///////////enable///////////////////////////////////
  always @(posedge clk, negedge rst_n)
 	if (!rst_n)
 		enable <= 0;
 	else if(wrt_SPI)
 		enable <= ss[2:0];
+*/
 
- always @(posedge clk, negedge rst_n)
-	if (!rst_n)
-		SSn <= 1;
-	else
-		SSn <= SS_n;
-
- always @(enable,SSn)
+//////////////////////////////////////////////////////////////////////
+//////////////////decoder logic for slave select/////////////////////
+///////////////////////////////////////////////////////////////////////
+ always @(ss,SS_n)
  begin
 
-	EEP_ss_n = 0;
-	ch3_ss_n = 0;
-	ch2_ss_n = 0;
-	ch1_ss_n = 0;
-	trig_ss_n = 0;
+	EEP_ss_n = 1;
+	ch3_ss_n = 1;
+	ch2_ss_n = 1;
+	ch1_ss_n = 1;
+	trig_ss_n = 1;
 
-	case (enable)
-		3'b001 :	ch1_ss_n = SSn;
+	case (ss)
+	   
+   	3'b000 : 	trig_ss_n = SS_n;                        
+	   
+		3'b001 :	ch1_ss_n = SS_n;
 
-		3'b010 :	ch2_ss_n = SSn;
+		3'b010 :	ch2_ss_n = SS_n;
 
-		3'b011 :	ch3_ss_n = SSn;
+		3'b011 :	ch3_ss_n = SS_n;
 
-		3'b100 : 	EEP_ss_n = SSn;
-
-		3'b111 : 	trig_ss_n = SSn;
+		3'b100 : 	EEP_ss_n = SS_n;
 	
 		default : begin
-			EEP_ss_n = 0;
-			ch3_ss_n = 0;
-			ch2_ss_n = 0;
-			ch1_ss_n = 0;
-			trig_ss_n = 0;
+			EEP_ss_n = 1;
+			ch3_ss_n = 1;
+			ch2_ss_n = 1;
+			ch1_ss_n = 1;
+			trig_ss_n = 1;
 	  end
 	endcase
  end
@@ -89,7 +103,8 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 			
 
 
-	uart_comm_transceiver iuart(clk, rst_n, tx_done, cmd_rdy, tx_data, cmd, TX, RX, clr_cmd_rdy, trmt );
+	uart_comm_transceiver iuart(.clk(clk), .rst_n(rst_n), .tx_done(resp_sent), .cmd_rdy(cmd_rdy),
+     .tx_data(resp_data), .cmd(cmd), .TX(TX), .RX(RX), .clr_cmd_rdy(clr_cmd_rdy),.trmt(send_resp) );
 
 	    
   ///////////////////////////
@@ -109,13 +124,13 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 
 endmodule
   
-
+/*
 module DSO_digtb();
 
   reg clk,rst_n;								// clock and active low reset
   wire adc_clk;								// 20MHz clocks to ADC
-  reg [7:0] ch1_data,ch2_data,ch3_data;		// reg data from ADC's
-  reg trig1,trig2;							// trigger regs from AFE
+  wire [7:0] ch1_data,ch2_data,ch3_data;		// reg data from ADC's
+  wire trig1,trig2;							// trigger regs from AFE
   wire MISO;									// Driven from SPI wire of EEPROM chip
   wire MOSI;									// SPI wire to digital pots and EEPROM chip
   wire SCLK;									// SPI clock (40MHz/16)
@@ -126,122 +141,39 @@ module DSO_digtb();
   wire RX;										// UART RX from HOST
   wire LED_n;									// control to active low LED
 
-	reg r;
 	wire tx_done;
-	
-	reg trmt;
-	reg [7:0] tx_data;
-	
-	
-  reg slave_wrt;
-  reg [15:0] slavetx_data;
 
 	wire [15:0] cmd_rcvd;
 	wire cmd_rdy;
 	wire rsp_rdy;
-	
+	reg [23:0] cmd_snd;
+	reg send_cmd;
+	wire [7:0] resp_rcv;
+	reg clr_resp_rdy;
 
 DSO_dig icmd(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MISO,
                SCLK,trig_ss_n,ch1_ss_n,ch2_ss_n,ch3_ss_n,EEP_ss_n,TX,RX,LED_n);
 
+AFE_A2D iAFE(.clk(clk),.rst_n(rst_n),.adc_clk(adc_clk),.ch1_ss_n(ch1_ss_n),.ch2_ss_n(ch2_ss_n),.ch3_ss_n(ch3_ss_n),
+             .trig_ss_n(trig_ss_n),.MOSI(MOSI),.SCLK(SCLK),.trig1(trig1),.trig2(trig2),.ch1_data(ch1_data),
+			 .ch2_data(ch2_data),.ch3_data(ch3_data));
 
+UART_comm_mstr iMSTR(.clk(clk), .rst_n(rst_n), .RX(TX), .TX(RX), .cmd(cmd_snd), .send_cmd(send_cmd),
+                     .cmd_sent(cmd_sent), .resp_rdy(resp_rdy), .resp_rcv(resp_rcv), .clr_resp_rdy(clr_resp_rdy));
 
-uart_tx DUT(.TX(RX), .trmt(trmt), .tx_data(tx_data), .rst_n(rst_n), .clk(clk), .tx_done(tx_done));
-
-
-SPI_slv islave(.clk(clk),.rst_n(rst_n),.tx_data(slavetx_data),.wrt(icmd.cmd_rdy),.SCLK(SCLK),.MISO(MISO),.SS_n(ch1_ss_n),.MOSI(MOSI),.cmd_rcvd(cmd_rcvd),
-								.cmd_rdy(cmd_rdy),.rsp_rdy(rsp_rdy));
-
+SPI_EEP islave(.clk(clk),.rst_n(rst_n),.SS_n(EEP_ss_n),.SCLK(SCLK),.MOSI(MOSI),.MISO(MISO));
+	
 initial begin
 clk = 1;
 forever #1 clk = ~clk;
 end
 
 initial begin
-//RX = 8'h02;
-//RX = 8'h1C;
-//RX = 8'hEF;
-rst_n = 0;
-trmt = 0;
 
-repeat(2) @(posedge clk);
-@ (negedge clk);
-rst_n =1;
-tx_data = 8'h02;
-trmt = 1;
-slavetx_data = 16'h0001;
 
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 1 done" , $time);
-@(negedge clk) trmt = 1;
-tx_data = 8'h1C;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 2 done" , $time);
-@(negedge clk) trmt = 1;
-tx_data = 8'hEF;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 3 done" , $time);
-repeat(1000)@(posedge clk);
-
-$display("dataaa : %h", cmd_rcvd);
-
-$stop;
 
 end
 
-initial
-	$monitor("%g ", $time , icmd.cmd_rdy ,icmd.cmd);
-
-endmodule
-
-/*
-@(posedge clk)
-	icmd.cmd_rdy = 1;
-@(negedge clk);
-	rst_n = 1;
-
-repeat (1) @(posedge clk);
-
-if( ( icmd.SPI_data == 16'h13DD ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b001 ))
-		$display("Success");
-
-icmd.cmd = 24'h031CEF;
-repeat (1) @(posedge clk) ;
-@(negedge clk) icmd.cmd_rdy = 0;
-if( ( icmd.SPI_data == 16'h00EF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b111 ))
-		$display("Success");
-
-icmd.cmd = 24'h081CEF;
-
-@(negedge clk) icmd.cmd_rdy = 0;
-repeat (1) @(posedge clk);
-
-@(icmd.SPI_done)
-if( ( icmd.SPI_data == 16'h5CEF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b100 ))
-		$display("Success");
-
-icmd.cmd_rdy = 1;
-icmd.cmd = 24'h092CBF;
-
-repeat (2) @(posedge clk);
-
-@(icmd.SPI_done)
-if( ( icmd.SPI_data == 16'h2CBF ) && (icmd.wrt_SPI) && ( icmd.ss == 3'b100 ))
-		$display("Success");
-
-repeat (2) @(posedge clk);
-$stop;
-end
-
-initial begin
-$monitor ("time: %g cmd : %h SPI_data : %h ss : %b wrt_SPI : %b",$time,icmd.cmd,icmd.SPI_data,icmd.idcore.ss,icmd.wrt_SPI );
-end
 
 endmodule
 */

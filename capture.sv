@@ -32,7 +32,7 @@ assign keep = (dec_cnt == dec_pwr) ? 1'b1 : 1'b0;
 assign autoroll = trig_cfg[3] & ~trig_cfg[2];
 assign norm_trig = ~trig_cfg[3] & trig_cfg[2];
 assign trig_en = autoroll | norm_trig;
-assign armed_cnt = smpl_cnt + trig_pos;
+assign armed_cnt = norm_trig ? smpl_cnt + trig_pos : smpl_cnt;
 assign done = (trig_cnt == trig_pos) ? 1'b1 : 1'b0;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -135,6 +135,80 @@ always_ff @(posedge clk, negedge rst_n)
 ///////////////////////////////////////////////////////////////////////////////
 always_comb
  begin
+=======
+assign armed_cnt = norm_trig ? smpl_cnt + trig_pos : smpl_cnt;
+assign done = (trig_cnt == trig_pos) ? 1 : 0;
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+smpl_cnt <= 9'h000;
+else if(clr_smpl_cnt)
+smpl_cnt <= 9'h000;
+else if(inc_smpl_cnt)
+smpl_cnt <= smpl_cnt + 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+addr <= 9'h000;
+else if(clr_addr)
+addr <= 9'h000;
+else if (inc_addr)
+addr <= addr + 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+capture_done <= 0;
+else if(clr_capture_done)
+capture_done <= 0;
+else if(done)
+capture_done <= 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+keep_ff <= 0;
+else
+keep_ff <= keep;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+armed <= 0;
+else if(clr_armed)
+armed <= 0;
+else if(armed_cnt == 10'h100)
+armed <= 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+dec_cnt <= 16'h0000;
+else if (clr_dec_cnt)
+dec_cnt <= 16'h0000;
+else if (inc_dec_cnt)
+dec_cnt <= dec_cnt + 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+trig_cnt <= 9'h000;
+else if(clr_trig_cnt)
+trig_cnt <= 9'h000;
+else if(inc_trig_cnt)
+trig_cnt <= trig_cnt + 1;
+end
+
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+state <= WAIT_TRG;
+else
+state <= next_state;
+end
+
+always @(triggered, done, autoroll, norm_trig, keep) begin
+>>>>>>> c0bddbd3c2c18b7cb84a7e12d57d5c74928a2134
 
 next_state=WAIT_TRG;
 trace_end = 0;
