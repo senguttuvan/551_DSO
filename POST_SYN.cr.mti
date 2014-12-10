@@ -1,0 +1,23 @@
+/userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig.vg {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig.vg
+-- Compiling module DSO_dig_DW01_inc_0
+-- Compiling module DSO_dig_DW01_inc_1
+-- Compiling module DSO_dig_DW01_inc_2
+-- Compiling module DSO_dig_DW01_inc_3
+-- Compiling module DSO_dig_DW01_add_0
+-- Compiling module DSO_dig_DW01_add_1
+-- Compiling module DSO_dig_DW01_inc_4
+-- Compiling module DSO_dig_DW01_inc_5
+-- Compiling module DSO_dig_DW01_add_2
+-- Compiling module DSO_dig_DW02_mult_0
+-- Compiling module DSO_dig
+
+Top level modules:
+	DSO_dig
+
+} {} {}} /userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig_tb_4.v {1 {vlog -nostats -work work -novopt /userspace/s/senguttuvan/ece551/modelsim/551_DSO/DSO_dig_tb_4.v
+-- Compiling module DSO_dig_tb
+
+Top level modules:
+	DSO_dig_tb
+
+} {} {}}
