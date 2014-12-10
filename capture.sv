@@ -65,10 +65,11 @@ always_ff @(posedge clk, negedge rst_n)
 always_ff @(posedge clk, negedge rst_n) 
 		if(~rst_n)
 					capture_done <= 0;
-		else if(done)
-					capture_done <= 1;
 		else if(clr_capture_done)
 					capture_done <= 0;
+		else if(done)
+					capture_done <= 1;
+
 
 			
 
@@ -149,9 +150,9 @@ we = 0;
 en = 0;		
 		case(state)
 						WAIT_TRG: begin
+											clr_trig_cnt = 1;
         						 if(trig_en & ~rclk & ~capture_done) begin                     ////clear counters///
            																							clr_dec_cnt = 1;
-           																							clr_trig_cnt = 1;
            																							clr_smpl_cnt = 1;
            																							next_state = SAMP1;
          																									end
