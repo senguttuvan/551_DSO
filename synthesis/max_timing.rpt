@@ -1,0 +1,81 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DSO_dig
+Version: I-2013.12-SP5
+Date   : Wed Dec 10 15:04:58 2014
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: idcore/icmd/sum_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: idcore/icmd/resp_to_send_reg[2]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DSO_dig            TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+  DSO_dig_DW02_mult_0
+                     ZeroWireload          tcbn40lpbwptc
+  DSO_dig_DW01_add_1 ZeroWireload          tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  idcore/icmd/sum_reg[1]/CP (DFCNQD1BWP)                  0.00       0.00 r
+  idcore/icmd/sum_reg[1]/Q (DFCNQD1BWP)                   0.13       0.13 r
+  idcore/icmd/imul/mult_10/A[1] (DSO_dig_DW02_mult_0)     0.00       0.13 r
+  idcore/icmd/imul/mult_10/U21/ZN (INVD1BWP)              0.03       0.16 f
+  idcore/icmd/imul/mult_10/U98/ZN (NR2D0BWP)              0.07       0.23 r
+  idcore/icmd/imul/mult_10/U2/Z (AN2XD1BWP)               0.07       0.29 r
+  idcore/icmd/imul/mult_10/S2_2_2/CO (FA1D0BWP)           0.12       0.41 r
+  idcore/icmd/imul/mult_10/S2_3_2/CO (FA1D0BWP)           0.12       0.53 r
+  idcore/icmd/imul/mult_10/S2_4_2/CO (FA1D0BWP)           0.12       0.66 r
+  idcore/icmd/imul/mult_10/S2_5_2/CO (FA1D0BWP)           0.12       0.78 r
+  idcore/icmd/imul/mult_10/S2_6_2/CO (FA1D0BWP)           0.12       0.90 r
+  idcore/icmd/imul/mult_10/S4_2/S (FA1D0BWP)              0.15       1.06 f
+  idcore/icmd/imul/mult_10/U33/Z (XOR2D1BWP)              0.07       1.13 r
+  idcore/icmd/imul/mult_10/FS_1/A[7] (DSO_dig_DW01_add_1)
+                                                          0.00       1.13 r
+  idcore/icmd/imul/mult_10/FS_1/U2/ZN (ND2D1BWP)          0.03       1.16 f
+  idcore/icmd/imul/mult_10/FS_1/U29/Z (OA21D0BWP)         0.07       1.23 f
+  idcore/icmd/imul/mult_10/FS_1/U26/ZN (IAO21D0BWP)       0.07       1.30 f
+  idcore/icmd/imul/mult_10/FS_1/U21/Z (OA21D0BWP)         0.08       1.38 f
+  idcore/icmd/imul/mult_10/FS_1/U16/ZN (OAI21D0BWP)       0.06       1.45 r
+  idcore/icmd/imul/mult_10/FS_1/U13/ZN (MOAI22D0BWP)      0.08       1.53 r
+  idcore/icmd/imul/mult_10/FS_1/U8/Z (XOR2D1BWP)          0.09       1.62 f
+  idcore/icmd/imul/mult_10/FS_1/SUM[13] (DSO_dig_DW01_add_1)
+                                                          0.00       1.62 f
+  idcore/icmd/imul/mult_10/PRODUCT[15] (DSO_dig_DW02_mult_0)
+                                                          0.00       1.62 f
+  U667/ZN (ND2D1BWP)                                      0.04       1.66 r
+  U712/ZN (IND3D1BWP)                                     0.06       1.72 f
+  U717/ZN (INVD1BWP)                                      0.03       1.75 r
+  U715/ZN (OAI21D1BWP)                                    0.05       1.80 f
+  U559/Z (AO211D0BWP)                                     0.14       1.94 f
+  idcore/icmd/resp_to_send_reg[2]/D (EDFCND1BWP)          0.00       1.94 f
+  data arrival time                                                  1.94
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  idcore/icmd/resp_to_send_reg[2]/CP (EDFCND1BWP)         0.00       2.35 r
+  library setup time                                     -0.08       2.27
+  data required time                                                 2.27
+  --------------------------------------------------------------------------
+  data required time                                                 2.27
+  data arrival time                                                 -1.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.33
+
+
+1

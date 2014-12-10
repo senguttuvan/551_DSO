@@ -1,0 +1,874 @@
+read_file -format sverilog { calib_eep.sv, capture.sv, cmd_module.sv, dig_core.v, DSO_dig.v, RAM512_shell.v, SPI_mstr.sv, trigger.sv, uart_comm.sv, uart_comm_transceiver.sv, uart_tx.sv, uart_rx.sv }
+Loading db file '/cae/apps/data/synopsys-2013/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db'
+Loading db file '/cae/apps/data/synopsys-2013/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db'
+Loading db file '/cae/apps/data/synopsys-2014/I-2013.12-SP5/libraries/syn/gtech.db'
+Loading db file '/cae/apps/data/synopsys-2014/I-2013.12-SP5/libraries/syn/standard.sldb'
+  Loading link library 'tcbn40lpbwptc'
+  Loading link library 'tpfn45gsgv18tc'
+  Loading link library 'gtech'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/calib_eep.sv
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:24: the undeclared symbol 'trig_src' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:32: the undeclared symbol 'autoroll' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:33: the undeclared symbol 'norm_trig' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:36: the undeclared symbol 'done' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v:71: the undeclared symbol 'clr_capture_done' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v:104: the undeclared symbol 'triggered' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v:105: the undeclared symbol 'trig_en' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v:108: the undeclared symbol 'armed' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v:40: the undeclared symbol 'SS_n' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v:40: the undeclared symbol 'wrt_SPI' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v:105: the undeclared symbol 'clr_cmd_rdy' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v:113: the undeclared symbol 'rclk' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v:113: the undeclared symbol 'we' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/RAM512_shell.v
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv
+Information:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv:49: List () of one, unnamed, port is ignored. (VER-988)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv:61: The statements in initial blocks are ignored. (VER-281)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv:75: The statements in initial blocks are ignored. (VER-281)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv:76: The statements in initial blocks are ignored. (VER-281)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm_transceiver.sv
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv:18: the undeclared symbol 'tx_done_bit' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/calib_eep.sv:11: signed to unsigned conversion occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:25: signed to unsigned assignment occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:31: signed to unsigned assignment occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv:36: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 135 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           150            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine capture line 41 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    smpl_cnt_reg     | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 53 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      addr_reg       | Flip-flop |   9   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 65 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  capture_done_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 78 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     keep_ff_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 88 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      armed_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 100 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     dec_cnt_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 112 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    trig_cnt_reg     | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine capture line 124 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/capture.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 217 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           241            |    auto/auto     |
+|           244            |    auto/auto     |
+|           250            |     no/auto      |
+|           269            |    auto/auto     |
+|           285            |    auto/auto     |
+|           381            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+        in routine cmd_module line 80 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+================================================================================
+|    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+| clr_capture_done_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+================================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 88 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   SPI_done_ff_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 99 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  resp_to_send_reg   | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 109 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      addr_reg       | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 121 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  decimator_reg_reg  | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 130 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    trig_pos_reg     | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 139 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    trig_cfg_reg     | Flip-flop |   7   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    trig_cfg_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 152 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 161 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    ch1_gain_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 170 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    ch2_gain_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 179 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    ch3_gain_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 188 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     offset_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 197 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      gain_reg       | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 207 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      chnl_reg       | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine cmd_module line 217 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|     nstate_reg      | Latch |   4   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  Latch inferred in design cmd_module read with 'hdlin_check_no_latch' (ELAB-395)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/cmd_module.sv:217: Netlist for always_comb block contains a latch. (ELAB-974)
+
+Inferred memory devices in process
+        in routine dig_core line 80 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/dig_core.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     adc_clk_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 67 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            76            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine DSO_dig line 50 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    EEP_data_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine DSO_dig line 58 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     enable_reg      | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 92 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           100            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine SPI_mstr line 22 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine SPI_mstr line 33 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    shft_reg_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine SPI_mstr line 55 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    bit_cntr_reg     | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine SPI_mstr line 65 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    dec_cntr_reg     | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine SPI_mstr line 76 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/SPI_mstr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    MISO_ff2_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    MISO_ff1_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine trig line 16 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   q1_trigger_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine trig line 23 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   q2_trigger_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine trig line 30 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   q3_trigger_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine trig line 37 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/trigger.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    triggered_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 58 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            64            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine uart_comm line 27 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     cmd_rdy_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_comm line 37 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     cmd_hi_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_comm line 44 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     cmd_mid_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_comm line 51 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_comm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv:14: signed to unsigned assignment occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv:17: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 58 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            60            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine uart_tx line 22 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     tx_done_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_tx line 30 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_tx line 36 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   baud_count_reg    | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_tx line 44 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    bit_count_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_tx line 52 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   command_tx_reg    | Flip-flop |   8   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv:35: signed to unsigned assignment occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv:36: signed to unsigned assignment occurs. (VER-318)
+Warning:  /userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv:99: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 91 in file
+        '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            99            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine uart_rx line 19 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      q1_RX_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 26 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      q2_RX_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      q3_RX_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 40 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       rdy_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 49 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     rx_data_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 56 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   baud_count_reg    | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 65 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    bit_count_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 75 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    rcv_data_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 84 in file
+                '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Loaded 13 designs.
+Current design is 'calib_eep'.
+calib_eep capture cmd_module dig_core DSO_dig RAM512 SPI_mstr trig trigger_tb uart_comm uart_comm_transceiver uart_tx uart_rx
+set current_design DSO_dig
+DSO_dig
+create_clock -name "clk" -period 2.5 -waveform {0 1} {clk}
+1
+set_dont_touch_network [find port clk]
+1
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+{rst_n ch1_data[7] ch1_data[6] ch1_data[5] ch1_data[4] ch1_data[3] ch1_data[2] ch1_data[1] ch1_data[0] ch2_data[7] ch2_data[6] ch2_data[5] ch2_data[4] ch2_data[3] ch2_data[2] ch2_data[1] ch2_data[0] ch3_data[7] ch3_data[6] ch3_data[5] ch3_data[4] ch3_data[3] ch3_data[2] ch3_data[1] ch3_data[0] trig1 trig2 MISO RX}
+set_input_delay -clock clk 0.5 $prim_inputs
+1
+set_driving_cell -lib_cell ND2D2BWP -from_pin A1 -library tcbn40lpbwptc $prim_inputs
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+1
+set_drive 0.1 rst_n
+1
+set_output_delay -clock clk 0.5 [all_outputs]
+1
+set_load 0.1 [all_outputs]
+1
+set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+1
+set_max_transition 0.15 [current_design]
+1
+set_clock_uncertainty 0.15 clk
+1
+set_fix_hold clk
+1
+ungroup -all -flatten
+Information: Changed wire load model for 'trig' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'capture' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'cmd_module' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'dig_core' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'uart_rx' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'uart_comm' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'uart_tx' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'uart_comm_transceiver' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'SPI_mstr' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Updating graph... (UID-83)
+1
+compile -map_effort medium
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'DSO_dig'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | I-2013.12-DWBB_201312.5 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 18 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS2DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS1DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2POC' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD1DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PCLAMP2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PCLAMP1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: Operating condition NCCOM set on design DSO_dig has different process,
+voltage and temperatures parameters than the parameters at which target library 
+tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'DSO_dig'
+Warning: The trip points for the library named tpfn45gsgv18tc differ from those in the library named tcbn40lpbwptc. (TIM-164)
+Information: The register 'iuart/RX_COMM_DUT/cmd_hi_reg[7]' will be removed. (OPT-1207)
+Information: The register 'iuart/RX_COMM_DUT/cmd_hi_reg[6]' will be removed. (OPT-1207)
+Information: The register 'iuart/RX_COMM_DUT/cmd_hi_reg[5]' will be removed. (OPT-1207)
+Information: The register 'iuart/RX_COMM_DUT/cmd_hi_reg[4]' will be removed. (OPT-1207)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'DSO_dig_DW01_inc_0'
+  Processing 'DSO_dig_DW01_inc_1'
+  Processing 'DSO_dig_DW01_cmp6_0'
+  Processing 'DSO_dig_DW01_inc_2'
+  Processing 'DSO_dig_DW01_inc_3'
+  Processing 'DSO_dig_DW01_add_0'
+  Processing 'DSO_dig_DW01_cmp2_0'
+  Processing 'DSO_dig_DW01_add_1'
+  Processing 'DSO_dig_DW01_cmp6_1'
+  Processing 'DSO_dig_DW01_ash_0'
+  Processing 'DSO_dig_DW01_cmp6_2'
+  Processing 'DSO_dig_DW01_inc_4'
+  Processing 'DSO_dig_DW01_inc_5'
+  Processing 'DSO_dig_DW01_cmp6_3'
+  Processing 'DSO_dig_DW01_inc_6'
+  Processing 'DSO_dig_DW01_inc_7'
+  Processing 'DSO_dig_DW01_inc_8'
+  Processing 'DSO_dig_DW01_inc_9'
+  Processing 'DSO_dig_DW02_mult_0'
+  Processing 'DSO_dig_DW01_add_2'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:06    3344.7      0.00       0.0       9.7                                0.00
+    0:00:07    3344.7      0.00       0.0       9.7                                0.00
+    0:00:07    3344.7      0.00       0.0       9.7                                0.00
+    0:00:07    3344.7      0.00       0.0       9.7                                0.00
+    0:00:07    3344.7      0.00       0.0       9.7                                0.00
+    0:00:07    2521.1      0.23       1.4       9.2                                0.00
+    0:00:07    2524.8      0.19       1.2       9.2                                0.00
+    0:00:08    2516.2      0.19       1.2       9.2                                0.00
+    0:00:08    2521.6      0.15       0.9       9.2                                0.00
+    0:00:08    2518.6      0.15       0.9       9.2                                0.00
+    0:00:08    2523.9      0.15       0.9       9.2                                0.00
+    0:00:08    2523.4      0.09       0.4       9.2                                0.00
+    0:00:08    2530.6      0.04       0.1       9.2                                0.00
+    0:00:08    2532.0      0.06       0.3       9.2                                0.00
+    0:00:08    2534.0      0.04       0.1       9.2                                0.00
+    0:00:08    2534.9      0.01       0.0       9.2                                0.00
+    0:00:08    2541.0      0.00       0.0       9.2                                0.00
+    0:00:08    2541.0      0.00       0.0       9.2                                0.00
+    0:00:08    2541.0      0.00       0.0       9.2                                0.00
+    0:00:08    2541.0      0.00       0.0       9.2                                0.00
+    0:00:08    2553.7      0.00       0.0       4.4                                0.00
+    0:00:08    2556.7      0.00       0.0       3.3                                0.00
+    0:00:08    2559.0      0.00       0.0       2.2                                0.00
+    0:00:08    2561.3      0.00       0.0       1.1                                0.00
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+    0:00:08    2563.6      0.00       0.0       0.0                                0.00
+    0:00:09    2555.9      0.00       0.0       0.0                                0.00
+    0:00:09    2548.8      0.00       0.0       0.0                                0.00
+
+
+  Beginning Design Rule Fixing  (min_path)  (max_transition)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:09    2548.8      0.00       0.0       0.0                               -0.46
+    0:00:10    2574.2      0.00       0.0       0.0                                0.00
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                             MIN DELAY
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            COST   
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:10    2574.2      0.00       0.0       0.0                                0.00
+    0:00:10    2574.2      0.00       0.0       0.0                                0.00
+    0:00:10    2558.2      0.01       0.0       0.0                                0.00
+    0:00:10    2556.2      0.00       0.0       0.0                                0.00
+    0:00:10    2555.0      0.00       0.0       0.0                                0.00
+    0:00:10    2554.4      0.00       0.0       0.0                                0.00
+    0:00:10    2553.4      0.00       0.0       0.0                                0.00
+    0:00:10    2553.4      0.00       0.0       0.0                                0.00
+    0:00:10    2585.0      0.00       0.0       0.0                                0.00
+    0:00:10    2531.3      0.09       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2527.8      0.10       0.5       0.0                               -0.00
+    0:00:10    2537.5      0.00       0.0       0.0                                0.00
+
+  Optimization Complete
+  ---------------------
+1
+report_timing > timing.rpt
+report_area > area.rpt
+write -format verilog DSO_dig -output DSO_dig.vg 
+Information: Writing synthetic library implementations for design 'DSO_dig_DW02_mult_0'.
+        Use "write -no_implicit" to get just the design. (UID-172)
+Writing verilog file '/userspace/s/senguttuvan/ece551/modelsim/DSO_Synthesis/DSO_dig.vg'.
+Warning: Verilog writer has added 5 nets to module DSO_dig_DW02_mult_0 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 7 nets to module DSO_dig using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+1
+remove_design -all 
+Removing design 'DSO_dig'
+Removing design 'DSO_dig_DW01_inc_0'
+Removing design 'DSO_dig_DW01_inc_1'
+Removing design 'DSO_dig_DW01_inc_2'
+Removing design 'DSO_dig_DW01_inc_3'
+Removing design 'DSO_dig_DW01_add_0'
+Removing design 'DSO_dig_DW01_inc_4'
+Removing design 'DSO_dig_DW01_inc_5'
+Removing design 'DSO_dig_DW02_mult_0'
+Removing design 'DSO_dig_DW01_add_3'
+Removing design 'DSO_dig_DW01_add_4'
+Removing design 'RAM512'
+Removing design 'trig'
+Removing design 'trigger_tb'
+Removing library 'tcbn40lpbwptc'
+Removing library 'tpfn45gsgv18tc'
+Removing library 'gtech'
+Removing library 'standard.sldb'
+1
+exit 
+
+Thank you...
+
