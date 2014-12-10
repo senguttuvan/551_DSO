@@ -1,3 +1,4 @@
+//`timescale 1ns/10ps
 module SPI_EEP(clk,rst_n,SS_n,SCLK,MOSI,MISO);
 
 input clk, rst_n;

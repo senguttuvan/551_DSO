@@ -1,6 +1,7 @@
+
 module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_data,
                 rclk,en,we,addr,ch1_rdata,ch2_rdata,ch3_rdata,cmd,cmd_rdy,clr_cmd_rdy,
-				resp_data,send_resp,resp_sent);
+								resp_data,send_resp,resp_sent);
 				
   input clk,rst_n;								// clock and active low reset
   output adc_clk,rclk;							// 20MHz clocks to ADC and RAM
@@ -30,24 +31,45 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
    wire [8:0] trig_pos,wr_addr,rd_addr,trace_end;
    wire capture_done;
 	 reg adc_clk;
+	 wire [7:0] resp_to_send;
 
-   //From cmd_module to ram_iface
-   wire dump_en;    //Enable data dump
-   wire [1:0] channel;  //Selects the channel
-   wire corrected;
+  ////////////////////////////From cmd_module to ram_iface////////////////////////
+   wire [1:0] channel;                      //Selects the channel
 
-	 // Trigger logic inputs
-	 wire trigSrc,trigEdge;
-	 wire wrt_en;
+
+	 //////////////////////////////// Trigger logic inputs//////////////////////////
+	 wire trigSrc,trigEdge;                   
+	 wire wrt_en,dump_en,wr_en;
 
 
   ///////////////////////////////////////////////////////
   // Instantiate the blocks of your digital core next //
   /////////////////////////////////////////////////////
 
-  cmd_module icmd(clk,rst_n,SPI_done,cmd,cmd_rdy,SPI_data,ss,wrt_SPI,EEP_data,send_resp,clr_cmd_rdy,resp_sent,resp_data,
-                  trig_cfg,trig_pos,decimator_reg,capture_done,ch1_rdata,ch2_rdata,ch3_rdata,
-									rd_addr,trace_end,ram_en,clr_capture_done);
+ cmd_module icmd	(.clk(clk),
+									 .rst_n(rst_n), 
+									 .SPI_done(SPI_done),
+									 .cmd(cmd), 
+									 .cmd_rdy(cmd_rdy), 
+									 .SPI_data(SPI_data),
+									 .ss(ss),
+									 .wrt_SPI(wrt_SPI),
+									 .EEP_data(EEP_data),
+									 .send_resp(send_resp),
+									 .clr_cmd_rdy(clr_cmd_rdy),
+									 .resp_sent(resp_sent),
+									 .resp_to_send(resp_data) ,
+									 .trig_cfg(trig_cfg) ,
+									 .trig_pos(trig_pos) ,
+									 .decimator_reg(decimator_reg),
+									 .capture_done(capture_done) ,
+									 .ch1_rdata(ch1_rdata) ,
+									 .ch2_rdata(ch2_rdata) ,
+									 .ch3_rdata(ch3_rdata),
+									 .addr(rd_addr),
+									 .trace_end(trace_end), 
+									 .clr_capture_done(clr_capture_done),
+									 .dump_en(dump_en));
 
 
 
@@ -67,23 +89,25 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
   // Assign ram controls //
 	////////////////////////
 	
-	assign en = wrt_en | ram_en;
-	assign addr = wrt_en ? wr_addr : rd_addr;
+	assign en = wrt_en | dump_en;
+	assign addr = (~dump_en) ? wr_addr : rd_addr;
+	assign we = (~dump_en)? wr_en : 1'b0 ; 
 
-  
-  //Trigger & Capture Logic////
+  /////////////////////////////////////////////////////////////////
+  ///////////////////Trigger & Capture Logic//////////////////////
+  ///////////////////////////////////////////////////////////////
 
 	assign trigSrc = trig_cfg[1:0];
 	assign trigEdge = trig_cfg[4];
 
   
-  capture TRIG_CAP(.clk(clk), .rst_n(rst_n), .triggered(triggered), .rclk(adc_clk),
+ capture TRIG_CAP(	.clk(clk), .rst_n(rst_n), .triggered(triggered), .rclk(adc_clk),
 									  .trig_cfg(trig_cfg), .trig_pos(trig_pos),.trace_end(trace_end),.trig_en(trig_en),
 									  .decimator_reg(decimator_reg), .capture_done(capture_done),
 									  .clr_capture_done(clr_capture_done),
-										.armed(armed), .we(we), .en(wrt_en), .addr(wr_addr));
+									  .armed(armed), .we(wr_en), .en(wrt_en), .addr(wr_addr));
 
-	trig itrig(.clk(clk),.rst_n(rst_n),.trigSrc(trigSrc),.trigEdge(trigEdge),.armed(armed),
+trig itrig(	.clk(clk),.rst_n(rst_n),.trigSrc(trigSrc),.trigEdge(trigEdge),.armed(armed),
 							.trig_en(trig_en),.set_capture_done(capture_done),
 							.trigger1(trig1),.trigger2(trig2),.triggered(triggered));
 

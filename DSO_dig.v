@@ -45,20 +45,28 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
   // 5 individual SS needed (3 AFE, 1 Trigger, 1 EEP)       //
   ///////////////////////////////////////////////////////////
 
-
+////////////////////////////////////////////////////
+///////EEP_data////////////////////////////////////
   always @(posedge clk, negedge rst_n)
  	if (!rst_n)
 		EEP_data <= 0;
 	else if(SPI_done & EEP_ss_n)
 		EEP_data <= data_in[7:0];
 
+/*
+//////////////////////////////////////////////////////
+///////////enable///////////////////////////////////
  always @(posedge clk, negedge rst_n)
 	if (!rst_n)
 		enable <= 0;
 	else if(wrt_SPI)
 		enable <= ss[2:0];
+*/
 
- always @(enable,SS_n)
+//////////////////////////////////////////////////////////////////////
+//////////////////decoder logic for slave select/////////////////////
+///////////////////////////////////////////////////////////////////////
+ always @(ss,SS_n)
  begin
 
 	EEP_ss_n = 1;
@@ -67,9 +75,9 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 	ch1_ss_n = 1;
 	trig_ss_n = 1;
 
-	case (enable)
+	case (ss)
 	   
-   	3'b000 : 	trig_ss_n = SS_n; 
+   	3'b000 : 	trig_ss_n = SS_n;                        
 	   
 		3'b001 :	ch1_ss_n = SS_n;
 
@@ -116,7 +124,7 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
 
 endmodule
   
-
+/*
 module DSO_digtb();
 
   reg clk,rst_n;								// clock and active low reset
@@ -161,134 +169,11 @@ forever #1 clk = ~clk;
 end
 
 initial begin
-rst_n = 0;
-send_cmd = 0;
-
-repeat(2) @(posedge clk);
-@ (negedge clk);
-rst_n =1;
-
-
-//Writing trig cfg
-send_cmd = 1;
-cmd_snd = 24'h060400;
-#20;
-send_cmd = 0;
-#500;
-
-repeat (500) begin : check
-	if (iMSTR.cmd_sent)
-		disable check;
-		#5;
-end
-
-
-
-//Read trig cfg
-cmd_snd = 24'h070000;
-send_cmd = 1;
-#20;
-send_cmd = 0;
-#500;
-
-repeat (500) begin : check2
-	if (iMSTR.cmd_sent)
-		disable check2;
-		#5;
-end
-
-//Waiting so that trig_cfg is read
-repeat (500) begin
-		#5;
-end
-
-
-
-//Check for negative ACK
-cmd_snd = 24'hAA0000;
-send_cmd = 1;
-#20;
-send_cmd = 0;
-#500;
-
-repeat (500) begin 
-		#10;
-end
-
-
-#40;
-$stop;
-
-/*
-send_cmd = 1;
-cmd_snd = 24'h070000;
-#20;
-send_cmd = 0;
-
-@(cmd_sent);
-$stop;
-@(resp_rdy);
-	$strobe ("%h", resp_rcv); 
-*/
-
-/*
-tx_data = 8'h07;
-trmt = 1;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 1 done" , $time);
-
-@(negedge clk) trmt = 1;
-tx_data = 8'h14;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 2 done" , $time);
-
-@(negedge clk) trmt = 1;
-tx_data = 8'h00;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-$display("%g byte 3 done" , $time);
-repeat(1000)@(posedge clk);
-
-
-$display("dataaa : %h", DUT.tx_data);
-
-/*
-$display("%g Write offset to EEPROM done" , $time);
-
-@(negedge clk) trmt = 1;
-tx_data = 8'h09;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-
-@(negedge clk) trmt = 1;
-tx_data = 8'h03;
-repeat(20) @ (posedge clk);
-trmt =0;
-repeat(600)@(posedge clk);
-
-@(negedge clk) trmt = 1;
-tx_data = 8'h01;
-repeat(20) @ (posedge clk);
-trmt =0;
-
-
-
-@(posedge icmd.SPI_done);
-@(posedge icmd.SPI_done);
-*/
-
 
 
 
 end
 
-initial
-	$monitor("%g cmd_rdy:%d cmd:%h icmd_response:%h EEPROM done , data : %h : resp : %h trig : %h", $time , icmd.cmd_rdy ,icmd.cmd, icmd.resp_data,icmd.EEP_data,resp_rcv,icmd.idcore.trig_cfg);
 
 endmodule
+*/
