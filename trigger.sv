@@ -1,5 +1,6 @@
 module trig (clk,rst_n,trigSrc,trigEdge,armed,trig_en,set_capture_done,trigger1,trigger2,triggered);
-input clk,rst_n,trig_en,armed,trigEdge,set_capture_done,trigSrc,trigger1,trigger2;
+input clk,rst_n,trig_en,armed,trigEdge,set_capture_done,trigger1,trigger2;
+input [1:0] trigSrc;
 output reg triggered;
 wire trig2;
 wire trig1;
@@ -8,7 +9,7 @@ reg q1_trigger, q2_trigger, q3_trigger;
 
 wire trigger_sel_out, pos_edge, neg_edge, trig_set;
 
-assign trigger_sel_out = trigSrc ? trigger2 : trigger1;
+assign trigger_sel_out = trigSrc[0]  ? trigger2 : trigger1;
 assign pos_edge = q2_trigger & ~q3_trigger;
 assign neg_edge = ~q2_trigger & q3_trigger;
 assign trig_set = trigEdge ?  neg_edge : pos_edge;

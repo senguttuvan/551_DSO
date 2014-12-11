@@ -46,6 +46,7 @@ ungroup -all -flatten
 #######################
 # Compile the design #
 #####################
+# set compile_seqmap_enable_output_inversion true
 compile -map_effort medium
 
 #####################################

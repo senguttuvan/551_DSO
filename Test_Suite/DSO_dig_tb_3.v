@@ -11,7 +11,7 @@
  *
  */
 
-module DSO_dig_tb();
+module DSO_dig_tb3();
 	
 reg clk,rst_n;							// clock and reset are generated in TB
 

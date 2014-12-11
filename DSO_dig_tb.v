@@ -96,7 +96,7 @@ rst_n =1;																									//deassert rst_n
 ///////////////////////////////////////////
 send_cmd = 1;                             
 cmd_snd = 24'h020000;                                      //configure analog gain
-#20;
+repeat(10) @ (posedge clk);
 send_cmd = 0;
 
 
@@ -122,10 +122,10 @@ clr_resp_rdy = 1;
 //////////////////////////////////////////
 send_cmd = 1;                             
 cmd_snd = 24'h020500; 
-#20;                                     //configure analog gain
+repeat(10) @ (posedge clk);                                   //configure analog gain
 send_cmd = 0;
 clr_resp_rdy = 0;
-#70;
+//#70;
 
 
 while (resp_rdy != 1'b1) begin 
@@ -150,10 +150,10 @@ clr_resp_rdy = 1;
 //////////////////////////////////////////
 send_cmd = 1;                             
 cmd_snd = 24'h020A00;                                      //configure analog gain
-#20;
+repeat(10) @ (posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
-#70;
+//#70;
 
 
 while (resp_rdy != 1'b1) begin 
@@ -180,10 +180,10 @@ clr_resp_rdy = 1;
 
 send_cmd = 1;                             
 cmd_snd = 24'h021100;                                      //configure analog gain
-#20;
+repeat(10) @ (posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
-#70;
+//#70;
 
 
 while (resp_rdy != 1'b1) begin 
@@ -211,10 +211,10 @@ clr_resp_rdy = 1;
 
 send_cmd = 1;                             
 cmd_snd = 24'h021400;                                      //configure analog gain
-#20;
+repeat(10) @ (posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
-#70;
+//#70;
 
 
 while (resp_rdy != 1'b1) begin 
@@ -243,10 +243,10 @@ clr_resp_rdy = 1;
 
 send_cmd = 1;                             
 cmd_snd = 24'h021E00;                                      //configure analog gain
-#20;
+repeat(10) @ (posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
-#70;
+//#70;
 
 
 while (resp_rdy != 1'b1) begin 
@@ -267,7 +267,7 @@ else
 
 clr_resp_rdy = 1;
 
-#400;
+repeat(100) @(posedge clk);
 $stop;
 
 end

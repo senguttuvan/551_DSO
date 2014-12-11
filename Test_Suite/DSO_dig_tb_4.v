@@ -422,7 +422,7 @@ if (resp_rcv == 8'ha5)
 else
 	$display("ALERT! command not acknowledged !");
 
-if (  iEEP.mem[8'h17] == 8'h80 )
+if (  iEEP.mem[8'h16] == 8'h80 )
 		$display("Write EEPROM(channel2 - gain)  success ! The EEPROM  value (addr:16) : %h " , iEEP.mem[8'h16] );
 else
 		$display("ALERT ! Write EEPROM(channel2 - gain) failed ! The EEPROM  value (addr:16) : %h " , iEEP.mem[8'h16] );
@@ -623,7 +623,7 @@ if ( fd == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010000;                                      //command to read eeprom
+cmd_snd = 24'h010000;                                    
 repeat(5) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -644,11 +644,7 @@ while (i <= 509) begin // i < 510 and not 511 because first value is already rec
 		$stop;
 	end
 
-	if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
-	
+
 	ch1_mem[i] = resp_rcv;
 
 	$fdisplay(fd,"%h",resp_rcv);
@@ -675,7 +671,7 @@ if ( fd2 == 0)
 	$display ("ALERT! Unable to open ch2 file");
 
 send_cmd = 1;                             
-cmd_snd = 24'h010100;                                      //command to read eeprom
+cmd_snd = 24'h010100;                                    
 repeat(5) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -696,10 +692,6 @@ while (i2 <= 509) begin // i < 510 and not 511 because first value is already re
 		$stop;
 	end
 
-	if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
 	
 	ch2_mem[i2] = resp_rcv;
 
@@ -730,7 +722,7 @@ if ( fd3 == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010200;                                      //command to read eeprom
+cmd_snd = 24'h010200;                                
 repeat(5) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -751,10 +743,6 @@ while (i3 <= 509) begin // i < 510 and not 511 because first value is already re
 		$stop;
 	end
 
-	if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
 	
 	ch3_mem[i3] = resp_rcv;
 
@@ -816,10 +804,10 @@ $stop;
 end
 
 always
-  #1 clk = ~clk;
+  #1.25 clk = ~clk;
 			 
 initial begin
-// $monitor("%g cmd_rdy:%d cmd:%h iDUT_resp_sent:%h Resp_rcvd : %h RAM_read_address: %d i : %d", $time , iDUT.cmd_rdy , iDUT.cmd, iDUT.resp_data , resp_rcv, iDUT.idcore.icmd.addr, i);
+//$monitor("%g cmd_rdy:%d cmd:%h iDUT_resp_sent:%h Resp_rcvd : %h RAM_read_address: %d i : %d", $time , iDUT.cmd_rdy , iDUT.cmd, iDUT.resp_data , resp_rcv, i);
 //$monitor(" ch3 ss_n : %h,  ch2 ss_n : %h CHECKING ANALOG GAIN: %h ", ch1_ss_n, ch2_ss_n, iAFE.POT1.cmd );
 //$monitor(" trig ss_n : %h, ch2 ss_n : %h CHECKING SET TRIGGER: %h ", trig_ss_n, ch2_ss_n, iAFE.POT4.cmd );
 //$monitor(" CHECKING TRIGGER POS: %h ", iDUT.idcore.trig_pos );

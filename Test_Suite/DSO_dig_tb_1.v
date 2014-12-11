@@ -12,7 +12,7 @@
  *
  */
 
-module DSO_dig_tb();
+module DSO_dig_tb1();
 	
 reg clk,rst_n;							// clock and reset are generated in TB
 
@@ -510,7 +510,7 @@ while (resp_rcv != 8'h24) begin
 
 // Read trig cfg
 
-	cmd_snd = 24'h070000;                               			 //command to read trig_cfg
+	cmd_snd = 24'h070000;                               			
 	send_cmd = 1;
 	repeat(10) @(posedge clk);
 	send_cmd = 0;
@@ -545,7 +545,7 @@ if ( fd == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010000;                                      //command to read eeprom
+cmd_snd = 24'h010000;                                     
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -561,10 +561,7 @@ while (i <= 509) begin // i < 510 and not 511 because first value is already rec
 		clr_resp_rdy = 0;
 		repeat(20) @(posedge clk);
 
-	if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
+
 	
 	ch1_mem[i] = resp_rcv;
 
@@ -592,7 +589,7 @@ if ( fd2 == 0)
 	$display ("ALERT! Unable to open ch2 file");
 
 send_cmd = 1;                             
-cmd_snd = 24'h010100;                                      //command to read eeprom
+cmd_snd = 24'h010100;                                      
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -608,11 +605,7 @@ while (i2 <= 509) begin // i < 510 and not 511 because first value is already re
 		clr_resp_rdy = 0;
 		repeat(20) @(posedge clk);
 
-	if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
-	
+
 	ch2_mem[i2] = resp_rcv;
 
 	$fdisplay(fd2,"%h",resp_rcv);
@@ -642,7 +635,7 @@ if ( fd3 == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010200;                                      //command to read eeprom
+cmd_snd = 24'h010200;                                      
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -658,10 +651,6 @@ while (i3 <= 509) begin // i < 510 and not 511 because first value is already re
 		clr_resp_rdy = 0;
 		repeat(20) @(posedge clk);
 
-if (resp_rcv == 8'hFF ) begin
-		$display(" ALERT : Negative Acknowledgement received : %h ", resp_rcv);
-		$stop;
-	end
 	
 	ch3_mem[i3] = resp_rcv;
 

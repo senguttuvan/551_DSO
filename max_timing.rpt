@@ -1,0 +1,72 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DSO_dig
+Version: I-2013.12-SP5
+Date   : Thu Dec 11 00:12:22 2014
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: idcore/icmd/sum_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: idcore/icmd/resp_to_send_reg[2]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DSO_dig            TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  idcore/icmd/sum_reg[1]/CP (DFCNQD2BWP)                  0.00       0.00 r
+  idcore/icmd/sum_reg[1]/Q (DFCNQD2BWP)                   0.21       0.21 r
+  U2058/ZN (ND4D1BWP)                                     0.10       0.31 f
+  U2059/ZN (CKND1BWP)                                     0.06       0.37 r
+  U2066/ZN (OAI32D1BWP)                                   0.06       0.43 f
+  U2070/S (FA1D0BWP)                                      0.13       0.56 r
+  U2079/S (FA1D0BWP)                                      0.15       0.71 f
+  U2090/S (FA1D0BWP)                                      0.15       0.86 f
+  U2102/CO (FA1D0BWP)                                     0.16       1.02 f
+  U2127/S (FA1D0BWP)                                      0.10       1.12 r
+  U2130/CO (FA1D0BWP)                                     0.14       1.26 r
+  U2128/ZN (ND2D1BWP)                                     0.05       1.31 f
+  U2152/ZN (OAI21D1BWP)                                   0.05       1.36 r
+  U2153/ZN (NR2D1BWP)                                     0.05       1.41 f
+  U2167/ZN (OAI21D1BWP)                                   0.06       1.47 r
+  U2185/Z (AO21D1BWP)                                     0.06       1.53 r
+  U2193/ZN (AOI21D1BWP)                                   0.04       1.57 f
+  U2194/ZN (INVD1BWP)                                     0.04       1.61 r
+  U2202/ZN (AOI32D1BWP)                                   0.05       1.66 f
+  U1280/ZN (MAOI222D1BWP)                                 0.10       1.76 r
+  U2218/ZN (NR2D1BWP)                                     0.05       1.81 f
+  U2241/ZN (AOI211D1BWP)                                  0.09       1.89 r
+  U2242/ZN (ND2D1BWP)                                     0.05       1.95 f
+  U2243/ZN (AOI21D1BWP)                                   0.09       2.04 r
+  U2258/ZN (OAI211D1BWP)                                  0.07       2.11 f
+  idcore/icmd/resp_to_send_reg[2]/D (EDFCND1BWP)          0.00       2.11 f
+  data arrival time                                                  2.11
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  idcore/icmd/resp_to_send_reg[2]/CP (EDFCND1BWP)         0.00       2.35 r
+  library setup time                                     -0.08       2.27
+  data required time                                                 2.27
+  --------------------------------------------------------------------------
+  data required time                                                 2.27
+  data arrival time                                                 -2.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.16
+
+
+1

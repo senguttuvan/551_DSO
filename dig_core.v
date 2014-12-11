@@ -38,7 +38,8 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
 
 
 	 //////////////////////////////// Trigger logic inputs//////////////////////////
-	 wire trigSrc,trigEdge;                   
+	 wire trigEdge;
+	 wire [1:0] trigSrc;                   
 	 wire wrt_en,dump_en,wr_en;
 
 
@@ -101,7 +102,7 @@ module dig_core(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_d
 	assign trigEdge = trig_cfg[4];
 
   
- capture TRIG_CAP(	.clk(clk), .rst_n(rst_n), .triggered(triggered), .rclk(adc_clk),
+ capture CAP(	.clk(clk), .rst_n(rst_n), .triggered(triggered), .rclk(adc_clk),
 									  .trig_cfg(trig_cfg), .trig_pos(trig_pos),.trace_end(trace_end),.trig_en(trig_en),
 									  .decimator_reg(decimator_reg), .capture_done(capture_done),
 									  .clr_capture_done(clr_capture_done),

@@ -18,7 +18,7 @@
  * 
  */
 
-module DSO_dig_tb();
+module DSO_dig_tb2();
 	
 reg clk,rst_n;							// clock and reset are generated in TB
 
@@ -246,7 +246,7 @@ clr_resp_rdy = 1;
 ////  Writing trig pos register ///
 //////////////////////////////////
 send_cmd = 1;                             
-cmd_snd = 24'h0401F0;                                      //set trig pos = 512
+cmd_snd = 24'h0401F0;                                      //set trig pos = 0x1F0
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -550,7 +550,7 @@ if ( fd == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010000;                                      //command to read eeprom
+cmd_snd = 24'h010000;                                      
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -592,7 +592,7 @@ if ( fd2 == 0)
 	$display ("ALERT! Unable to open ch2 file");
 
 send_cmd = 1;                             
-cmd_snd = 24'h010100;                                      //command to read eeprom
+cmd_snd = 24'h010100;                                    
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;
@@ -637,7 +637,7 @@ if ( fd3 == 0)
 
 
 send_cmd = 1;                             
-cmd_snd = 24'h010200;                                      //command to read eeprom
+cmd_snd = 24'h010200;                                      
 repeat(10) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;

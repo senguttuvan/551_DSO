@@ -11,7 +11,7 @@ input [3:0] decimator_reg;
 typedef enum reg [1:0] {WAIT_TRG,SAMP1,SAMP2} state_t;
 state_t state,next_state;
 
-
+wire [1:0] trig_src;
 wire [15:0] dec_pwr;
 reg [15:0] dec_cnt;
 reg [8:0] smpl_cnt, trig_cnt;
@@ -67,11 +67,8 @@ always_ff @(posedge clk, negedge rst_n)
 					capture_done <= 0;
 		else if(clr_capture_done)
 					capture_done <= 0;
-		else if(done)
+		else if(done || (autoroll & armed))
 					capture_done <= 1;
-
-
-			
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////  keep signal  ////////////////////////////////////////////
@@ -91,7 +88,7 @@ always_ff @(posedge clk, negedge rst_n)
 					armed <= 0;
 		else if(clr_armed)
 					armed <= 0;
-		else if(armed_cnt == 10'd512)
+		else if(armed_cnt == 10'd511)
 					armed <= 1;
 
 
@@ -168,13 +165,13 @@ en = 0;
         						end
 
 						SAMP2 : begin
-        							if (done) begin                     //if done signal is high trace_end gets addr
+        							if (done || (autoroll & armed)) begin     //For normal trigger and auto roll mode
         												trace_end = addr;         //clear the armed signal 
         												clr_armed =1;
         												next_state = WAIT_TRG;
         												end
         							else if(triggered) begin             //if triggered is high define we,en
-        												we = keep;
+        																	we = keep;
         																	en = keep;
         																	inc_trig_cnt = (norm_trig &triggered | autoroll & armed)&keep;        //increment the trigger counter
         																	clr_dec_cnt = keep;                                                    //clear the decimator counter
