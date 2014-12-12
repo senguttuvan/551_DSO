@@ -111,9 +111,9 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
   // Instantiate dig_core //
   /////////////////////////
 
-	dig_core idcore(clk,rst_n,adc_clk,trig1,trig2,SPI_data,wrt_SPI,SPI_done,ss,EEP_data,
-              rclk,en,we,addr,ch1_rdata,ch2_rdata,ch3_rdata,cmd,cmd_rdy,clr_cmd_rdy,
-							resp_data,send_resp,resp_sent);
+	dig_core idcore(.clk(clk),.rst_n(rst_n),.adc_clk(adc_clk),.trig1(trig1),.trig2(trig2),.SPI_data(SPI_data),.wrt_SPI(wrt_SPI),.SPI_done(SPI_done),.ss(ss),.EEP_data(EEP_data),
+              .rclk(rclk),.en(en),.we(we),.addr(addr),.ch1_rdata(ch1_rdata),.ch2_rdata(ch2_rdata),.ch3_rdata(ch3_rdata),.cmd(cmd),.cmd_rdy(cmd_rdy),.clr_cmd_rdy(clr_cmd_rdy),
+							.resp_data(resp_data),.send_resp(send_resp),.resp_sent(resp_sent));
 
   //////////////////////////////////////////////////////////////
   // Instantiate the 3 512 RAM blocks that store A2D samples //
@@ -123,57 +123,4 @@ module DSO_dig(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MIS
   RAM512 iRAM3(.rclk(rclk),.en(en),.we(we),.addr(addr),.wdata(ch3_data),.rdata(ch3_rdata));
 
 endmodule
-  
-/*
-module DSO_digtb();
 
-  reg clk,rst_n;								// clock and active low reset
-  wire adc_clk;								// 20MHz clocks to ADC
-  wire [7:0] ch1_data,ch2_data,ch3_data;		// reg data from ADC's
-  wire trig1,trig2;							// trigger regs from AFE
-  wire MISO;									// Driven from SPI wire of EEPROM chip
-  wire MOSI;									// SPI wire to digital pots and EEPROM chip
-  wire SCLK;									// SPI clock (40MHz/16)
-  wire ch1_ss_n,ch2_ss_n,ch3_ss_n;			// SPI slave selects for configuring channel gains (active low)
-  wire trig_ss_n;								// SPI slave select for configuring trigger level
-  wire EEP_ss_n;								// Calibration EEPROM slave select
-  wire TX;									// UART TX to HOST
-  wire RX;										// UART RX from HOST
-  wire LED_n;									// control to active low LED
-
-	wire tx_done;
-
-	wire [15:0] cmd_rcvd;
-	wire cmd_rdy;
-	wire rsp_rdy;
-	reg [23:0] cmd_snd;
-	reg send_cmd;
-	wire [7:0] resp_rcv;
-	reg clr_resp_rdy;
-
-DSO_dig icmd(clk,rst_n,adc_clk,ch1_data,ch2_data,ch3_data,trig1,trig2,MOSI,MISO,
-               SCLK,trig_ss_n,ch1_ss_n,ch2_ss_n,ch3_ss_n,EEP_ss_n,TX,RX,LED_n);
-
-AFE_A2D iAFE(.clk(clk),.rst_n(rst_n),.adc_clk(adc_clk),.ch1_ss_n(ch1_ss_n),.ch2_ss_n(ch2_ss_n),.ch3_ss_n(ch3_ss_n),
-             .trig_ss_n(trig_ss_n),.MOSI(MOSI),.SCLK(SCLK),.trig1(trig1),.trig2(trig2),.ch1_data(ch1_data),
-			 .ch2_data(ch2_data),.ch3_data(ch3_data));
-
-UART_comm_mstr iMSTR(.clk(clk), .rst_n(rst_n), .RX(TX), .TX(RX), .cmd(cmd_snd), .send_cmd(send_cmd),
-                     .cmd_sent(cmd_sent), .resp_rdy(resp_rdy), .resp_rcv(resp_rcv), .clr_resp_rdy(clr_resp_rdy));
-
-SPI_EEP islave(.clk(clk),.rst_n(rst_n),.SS_n(EEP_ss_n),.SCLK(SCLK),.MOSI(MOSI),.MISO(MISO));
-	
-initial begin
-clk = 1;
-forever #1 clk = ~clk;
-end
-
-initial begin
-
-
-
-end
-
-
-endmodule
-*/

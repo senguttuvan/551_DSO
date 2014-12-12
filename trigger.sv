@@ -12,7 +12,7 @@ wire trigger_sel_out, pos_edge, neg_edge, trig_set;
 assign trigger_sel_out = trigSrc[0]  ? trigger2 : trigger1;
 assign pos_edge = q2_trigger & ~q3_trigger;
 assign neg_edge = ~q2_trigger & q3_trigger;
-assign trig_set = trigEdge ?  neg_edge : pos_edge;
+assign trig_set = trigEdge ?  pos_edge : neg_edge;
 
 always_ff @(posedge clk, negedge rst_n) begin
 if(~rst_n)

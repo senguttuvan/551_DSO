@@ -549,7 +549,7 @@ end
 
 if (resp_rcv == 8'h00 ) begin
 		$display("Command acknowledged !");
-		$display("Read EEPROM(channel3 - offset) success ! Received EEPROM  value (addr:27) value : %h ", resp_rcv );
+		$display("Read EEPROM(channel3 - offset) success ! Received EEPROM  value (addr:2F) value : %h ", resp_rcv );
 end else begin
 		$display("ALERT! command not acknowledged !");
 		$display("ALERT ! Read EEPROM(channel3 - offset) failed ! The response received : %h " , resp_rcv );

@@ -61,7 +61,7 @@ AFE_A2D iAFE(.clk(clk),.rst_n(rst_n),.adc_clk(adc_clk),.ch1_ss_n(ch1_ss_n),.ch2_
 // Instantiate UART Master (acts as host) //
 ///////////////////////////////////////////
 UART_comm_mstr iMSTR(.clk(clk), .rst_n(rst_n), .RX(TX), .TX(RX), .cmd(cmd_snd), .send_cmd(send_cmd),
-                     .cmd_sent(cmd_sent), .resp_rdy(resp_rdy), .resp(resp_rcv), .clr_resp_rdy(clr_resp_rdy));
+                     .cmd_sent(cmd_sent), .resp_rdy(resp_rdy), .resp_rcv(resp_rcv), .clr_resp_rdy(clr_resp_rdy));
 
 /////////////////////////////////////
 // Instantiate Calibration EEPROM //
@@ -269,7 +269,7 @@ clr_resp_rdy = 1;
 ////  Writing decimator register //
 //////////////////////////////////
 send_cmd = 1;                             
-cmd_snd = 24'h050100;                                      //set decimator = 4
+cmd_snd = 24'h050102;                                      //set decimator = 2
 repeat(5) @(posedge clk);
 send_cmd = 0;
 clr_resp_rdy = 0;

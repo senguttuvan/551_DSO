@@ -19,11 +19,22 @@ wire [9:0] armed_cnt;                                  //Sum of smpl_cnt and tri
 wire keep;
 reg keep_ff, clr_dec_cnt, inc_dec_cnt, clr_trig_cnt, inc_trig_cnt, clr_addr, inc_addr, inc_smpl_cnt, clr_smpl_cnt, clr_armed;
 output reg [8:0] addr;
+reg flop_trace_end;
 
 
 assign trig_src = trig_cfg[1:0];                 //assign the value of trig_src from trig_cfg
 assign dec_pwr = 1'b1<<decimator_reg;               //left shift the decimator register by 1 to get the dec_pwr
 
+
+///////////////////////////////////////////////////////////////////////////////////
+//////// trace_end flop////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+always @(posedge clk, negedge rst_n) begin
+if(~rst_n)
+trace_end <= 9'h000;
+else if(flop_trace_end)
+trace_end <= addr;
+end
 
 ///////////////////////////////////////////////////////////////////////////////////
 ////////  definition of keep,autoroll,norm_trig,trig_en,armed_cnt,done  //////////
@@ -134,7 +145,6 @@ always_comb
  begin
 
 next_state=WAIT_TRG;
-trace_end = 0;
 clr_dec_cnt = 0;
 clr_trig_cnt = 0;
 clr_armed = 0;
@@ -144,6 +154,7 @@ inc_trig_cnt = 0;
 inc_smpl_cnt = 0;
 inc_addr = 0;
 we = 0;
+flop_trace_end = 0;
 en = 0;		
 		case(state)
 						WAIT_TRG: begin
@@ -166,7 +177,7 @@ en = 0;
 
 						SAMP2 : begin
         							if (done || (autoroll & armed)) begin     //For normal trigger and auto roll mode
-        												trace_end = addr;         //clear the armed signal 
+        												flop_trace_end = 1;         //clear the armed signal 
         												clr_armed =1;
         												next_state = WAIT_TRG;
         												end
@@ -178,7 +189,7 @@ en = 0;
         																	next_state = SAMP1;
         																	end
         							else  begin
-        																	inc_smpl_cnt = 1;                 //otherwise increment sample counter
+        																	inc_smpl_cnt = keep;                 //otherwise increment sample counter
         																	next_state = SAMP1;
         																	clr_dec_cnt = keep; 
         													end

@@ -41,7 +41,6 @@ output reg dump_en;
  reg strt_addrcnt,en_addrcnt,set_channel;
  reg [1:0] chnl;                                                  //to store cc ie channel 
  reg [7:0] sum;
- reg [7:0] prod;
 
  localparam DUMP_CHN 		= 4'h1;
  localparam CFG_GAIN 		= 4'h2;
@@ -53,7 +52,7 @@ output reg dump_en;
  localparam WRT_EEP  		= 4'h8;
  localparam RD_EEP   		= 4'h9;
 
- typedef enum reg [3:0] {CMD_DISPATCH,RD_OFFSET1,RD_GAIN1,RD_OFFSET2,DUMP1,DUMP2,DUMP3,CFG_GAIN2,SET_TRIG2,WRITE_TRIG2,WRT_EEP2,RD_EEP2,RD_EEP3} state_t;
+ typedef enum reg [3:0] {CMD_DISPATCH, RD_OFFSET1,RD_GAIN1,RD_OFFSET2,DUMP1,DUMP2,DUMP3, CFG_GAIN2, SET_TRIG2, WRITE_TRIG2, WRT_EEP2, RD_EEP2,RD_EEP3} state_t;
 
  state_t state,nstate;
 
